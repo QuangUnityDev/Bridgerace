@@ -17,6 +17,10 @@ public class PlayerController : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //if(gameObject.CompareTag("Blo"))
+        if (gameObject.CompareTag("Block"))
+        {
+            collision.gameObject.SetActive(false);
+            
+        }
     }
 }

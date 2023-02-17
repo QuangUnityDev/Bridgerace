@@ -4,27 +4,27 @@ using UnityEngine;
 
 public class SpawnBlock : SingletonObject<SpawnBlock>
 {
-    [SerializeField] List<GameObject> blockRed;
+    [SerializeField] List<GameObject> block;
     [SerializeField] bool isCreateNew = false;
 
     private bool _isHadObject = false;
 
     public GameObject SpawnBlockRed(Vector3 pos)
     {
-        for (int i = 0; i < blockRed.Count; i++)
+        for (int i = 0; i < block.Count; i++)
         {
-            if (!blockRed[i].gameObject.activeSelf)
+            if (!block[i].gameObject.activeSelf)
             {
-                blockRed[i].transform.position = pos;
-                blockRed[i].gameObject.SetActive(true);
-                return blockRed[i];
+                block[i].transform.position = pos;
+                block[i].gameObject.SetActive(true);
+                return block[i];
             }
         }
 
-        GameObject more = Instantiate(blockRed[Random.Range(0,4)].gameObject, gameObject.transform);
+        GameObject more = Instantiate(block[Random.Range(0,4)].gameObject, gameObject.transform);
         more.transform.position = pos;
         more.gameObject.SetActive(true);
-        blockRed.Add(more);
+        block.Add(more);
         return more.gameObject;
-    }
+    }   
 }
