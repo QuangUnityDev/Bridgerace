@@ -111,3 +111,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   typeBlockColor: 2
+  colorMaterials:
+  - {fileID: 2100000, guid: 620c2d54402241a4ca3d9c9be65dced5, type: 2}
+  - {fileID: 2100000, guid: a2ea5219bee4eb740aece1b7ff09271c, type: 2}
+  - {fileID: 2100000, guid: b59a1b03449c19c4282f853c1c3bb973, type: 2}
+  - {fileID: 2100000, guid: 57bb048de8efbb94f8e958c0c7a3617f, type: 2}

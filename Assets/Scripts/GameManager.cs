@@ -6,7 +6,7 @@ using UnityEngine;
 public class GameManager : SingletonObject<GameManager>
 {
     public GameObject[] brick;
-    public GameObject[] blockBuildBridge;
+    //public GameObject[] blockBuildBridge;
     public string[,] a;
     [SerializeField] GameObject blockRed;
     [HideInInspector]public int[,] sa = new int[9, 12];
@@ -16,13 +16,12 @@ public class GameManager : SingletonObject<GameManager>
         block1 = 2,
         wall = 0
     }
-    public void BuildBridge(int typeBlock,Vector3 pos)
-    {
-        Instantiate(blockBuildBridge[typeBlock], pos,Quaternion.identity);
-    }
+    //public void BuildBridge(int typeBlock,Vector3 pos)
+    //{
+    //    Instantiate(blockBuildBridge[typeBlock], pos,Quaternion.identity);
+    //}
     private void Awake()
     {
-        LoadText();
         //InvokeRepeating(nameof(SpawnBlockRandom),0,5);
         SpawnBlockRandom();
     }
@@ -35,7 +34,7 @@ public class GameManager : SingletonObject<GameManager>
                 if (sa[i, j] == 0)
                 {
                     {
-                        SpawnBlock.GetInstance().SpawnBlockRed(new Vector3(i, 0.2f, j));
+                        SpawnBlock.GetInstance().SpawnBlockRed(new Vector3(i, 0, j));
                         sa[i, j] = 1;
                     }
                 }

@@ -3,18 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class JoystickPlayerExample : MonoBehaviour
-{
-    [Header("Color Player")]
-    public TypePlayer typePlayerColor;
-
-    public enum TypePlayer
-    {
-        PlayerRed,
-        PlayerBlue,
-        PlayerGreen,
-        Yellow
-
-    }
+{    
     public float speed;
     public VariableJoystick variableJoystick;
     public Rigidbody rb;
