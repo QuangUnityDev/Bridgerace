@@ -11,7 +11,7 @@ public class JoystickPlayerExample : MonoBehaviour
     public void FixedUpdate()
     {
         Vector3 direction = Vector3.forward * variableJoystick.Vertical + Vector3.right * variableJoystick.Horizontal;
-        //rb.AddForce(direction * speed * Time.fixedDeltaTime, ForceMode.VelocityChange);
-        transform.Translate(direction * speed * Time.fixedDeltaTime);
+        rb.velocity = direction * speed * Time.fixedDeltaTime;
+        transform.rotation = Quaternion.LookRotation(direction);
     }
 }

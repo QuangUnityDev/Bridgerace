@@ -21,7 +21,27 @@ public class BlockBridge : MonoBehaviour
     void ChangeColor(int color)
     {
         transform.GetComponent<MeshRenderer>().material = colorMaterials[color];
-        typeBlockColor = TypeBlock.BlockGreen;
+        switch (color)
+        {
+            case 0:
+                typeBlockColor = TypeBlock.BlockRed;
+                break;
+            case 1:
+                typeBlockColor = TypeBlock.BlockBlue;
+                break;
+            case 2:
+                typeBlockColor = TypeBlock.BlockGreen;
+                break;
+            case 3:
+                typeBlockColor = TypeBlock.BlockYellow;
+                break;
+            case 4:
+                typeBlockColor = TypeBlock.None;
+                break;
+
+            default:
+                break;
+        }
     }
     
     private void OnCollisionEnter(Collision collision)

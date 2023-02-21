@@ -11,7 +11,6 @@ public class Block : MonoBehaviour
     private void Start()
     {
         posStar = transform.position;
-
     }
     public enum TypeBlock
     {       
@@ -20,7 +19,6 @@ public class Block : MonoBehaviour
         BlockGreen,
         BlockYellow,
         None
-
     }
     
     void ChangeColor(int color) 
@@ -32,13 +30,14 @@ public class Block : MonoBehaviour
         if (other.CompareTag("Player") && (int)typeBlockColor == (int)other.GetComponent<PlayerInf>().typePlayerColor)
         {
             int i = (int)(transform.position.x);
-            int j = (int)(transform.position.z);
-            //GameManager.GetInstance().sa[x,z] = 0;
-            //this.gameObject.SetActive(false);
+            int j = (int)(transform.position.z);         
             int child = other.transform.childCount;
             GameManager.GetInstance().sa[i, j] = 0;
-            gameObject.transform.SetLocalPositionAndRotation(new Vector3(other.transform.position.x - 0.5f, other.transform.position.y + child * 0.2f, other.transform.position.z), other.transform.rotation);
-            gameObject.transform.SetParent(other.transform);
+
+            Vector3 pos = new Vector3(other.transform.localPosition.x, other.transform.localPosition.y + child * 0.2f, other.transform.localPosition.z - 0.8f);
+            
+            transform.SetParent(other.transform);
+            transform.SetPositionAndRotation(pos, other.transform.localRotation);
         }
     }
     public void AppearAgain()

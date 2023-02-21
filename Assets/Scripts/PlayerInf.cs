@@ -6,7 +6,7 @@ public class PlayerInf : MonoBehaviour
 {
     [Header("Color Player")]
     public TypePlayer typePlayerColor = TypePlayer.PlayerGreen;
-
+    protected int blockOwner;
     public enum TypePlayer
     {
         PlayerRed = 0,
