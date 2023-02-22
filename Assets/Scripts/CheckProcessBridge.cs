@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class CheckProcessBridge : MonoBehaviour
 {
-    public Transform cubeCheckPlayer;
+    public GameObject cubeCheckPlayer;
     //public Transform cubeCheckEnemy;
     public PlayerInf player;
+    private bool isPassBridge;
     void Start()
     {
 
@@ -15,32 +16,41 @@ public class CheckProcessBridge : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (player.transform.childCount > 0)
+        
+        for (int i = 0; i < transform.childCount - 3; i++)
         {
-            cubeCheckPlayer.transform.position = new Vector3(transform.GetChild(0).transform.position.x + 1.1f, cubeCheckPlayer.transform.position.y, transform.GetChild(0).transform.position.z);
-        }
-        for (int i = 0; i < transform.childCount - 4; i++)
-        {
-            if (player.transform.childCount < 0)
+            if ((int)transform.GetChild(i).GetComponent<BlockBridge>().typeBlockColor != (int)player.typePlayerColor)
             {
-                if ((int)transform.GetChild(i).GetComponent<BlockBridge>().typeBlockColor != (int)player.typePlayerColor)
-                {
-                    cubeCheckPlayer.transform.position = new Vector3(transform.GetChild(i).transform.position.x, cubeCheckPlayer.transform.position.y, transform.GetChild(i).transform.position.z);       
-                }
-                return;
-            }
-            if (player.transform.childCount > 0)
-            {
-                if ((int)transform.GetChild(i).GetComponent<BlockBridge>().typeBlockColor == (int)player.typePlayerColor)
-                {
-                    cubeCheckPlayer.transform.position = new Vector3(transform.GetChild(i).transform.position.x + 2.2f, cubeCheckPlayer.transform.position.y, transform.GetChild(i).transform.position.z);
-                }
-                if (i == transform.childCount)
+                if(BlockBridge.isOnBridge == true)
                 {
                     cubeCheckPlayer.GetComponent<BoxCollider>().isTrigger = true;
                 }
+                else
+                {
+                    cubeCheckPlayer.GetComponent<BoxCollider>().isTrigger = false;
+                }
+                if (player.transform.childCount > 0)
+                {
+                    cubeCheckPlayer.transform.position = new Vector3(transform.GetChild(i).transform.position.x + 1.1f, cubeCheckPlayer.transform.position.y, transform.GetChild(i).transform.position.z);
+                }
+                else
+                    cubeCheckPlayer.transform.position = new Vector3(transform.GetChild(i).transform.position.x, cubeCheckPlayer.transform.position.y, transform.GetChild(i).transform.position.z);
+                return;
             }
-            
+            if ((int)transform.GetChild(transform.childCount - 4).GetComponent<BlockBridge>().typeBlockColor == (int)player.typePlayerColor && BlockBridge.isOnBridge == true)
+            {
+                cubeCheckPlayer.GetComponent<BoxCollider>().isTrigger = true;
+            }
+            else
+            {
+                cubeCheckPlayer.GetComponent<BoxCollider>().isTrigger = false;
+            }
         }
+
+
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        cubeCheckPlayer.GetComponent<BoxCollider>().isTrigger = false;
     }
 }

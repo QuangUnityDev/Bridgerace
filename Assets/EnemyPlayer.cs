@@ -7,13 +7,13 @@ public class EnemyPlayer : PlayerInf
 {
     [SerializeField] private NavMeshAgent navAgent;
     [SerializeField] private Transform target;
-    [SerializeField] private GameObject block;
     private int randomBridge;
+    private int randomBlockOnBridge;
     private int randomBlock;
     [SerializeField] private Transform[] Bridge;
     private void Start()
     {
-        
+        Init();
     }
     void Init()
     {
@@ -24,21 +24,32 @@ public class EnemyPlayer : PlayerInf
     {
         blockOwner = transform.childCount;
         navAgent.SetDestination(target.position);
-        //if(Vector3.Distance(transform.position,target.position) < 0.1f)
-        //{
-        //    targetMoveNext();
-        //}
-        //else navAgent.SetDestination(target.position);
-
+        if (randomBlockOnBridge == blockOwner)
+        {     
+            if (Vector3.Distance(transform.position, target.position) < 1.2f)
+            {
+                Debug.LogError("Xuong cau");
+                StateUpBridge();
+                targetMoveNext();
+            }
+            else target = Bridge[randomBridge].transform.GetChild(blockOwner).transform;
+        }
+        else
+        if (Vector3.Distance(transform.position, target.position) < 1.2f)
+        {
+            Debug.LogError(randomBlock);
+            targetMoveNext();
+        }
+        else navAgent.SetDestination(target.position);
     }
     void StateUpBridge()
     {
         randomBridge = Random.Range(0, Bridge.Length);
+        randomBlockOnBridge = Random.Range(0, Bridge[randomBridge].transform.childCount - 3);
     }
     void targetMoveNext()
     {
-        Debug.LogError("Muc tieu ke tiep");
-        randomBlock = Random.Range(0, block.transform.childCount);
-        target = block.transform.GetChild(4).transform;
+        randomBlock = Random.Range(0, GameManager.GetInstance().blockBlue.Count);
+        target = GameManager.GetInstance().blockBlue[randomBlock].transform;
     }
 }

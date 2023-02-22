@@ -5,14 +5,15 @@ TagManager:
   serializedVersion: 2
   tags:
   - PlayerEnemy
+  - CubeCheck
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - BoxPlayer
+  - BotPlayer
   - Water
   - UI
-  - Enemy
+  - BoxPlayer
   - WayEnemy
   - Player
   - 

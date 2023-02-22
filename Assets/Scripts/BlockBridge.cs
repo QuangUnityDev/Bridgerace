@@ -48,10 +48,23 @@ public class BlockBridge : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player") && collision.transform.childCount > 0 && (int)typeBlockColor != (int)collision.transform.GetComponent<PlayerInf>().typePlayerColor)
         {
+            Debug.LogError("Da va cham voi player");
             int child = collision.transform.childCount;
             GameObject buildFill = collision.gameObject.transform.GetChild(child - 1).gameObject;
             buildFill.transform.SetParent(null);    
             ChangeColor((int)collision.transform.GetComponent<PlayerInf>().typePlayerColor);
+            buildFill.GetComponent<Block>().AppearAgain();
+        }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player") && other.transform.childCount > 0 && (int)typeBlockColor != (int)other.transform.GetComponent<PlayerInf>().typePlayerColor)
+        {
+            Debug.LogError("Da va cham voi player");
+            int child = other.transform.childCount;
+            GameObject buildFill = other.gameObject.transform.GetChild(child - 1).gameObject;
+            buildFill.transform.SetParent(null);
+            ChangeColor((int)other.transform.GetComponent<PlayerInf>().typePlayerColor);
             buildFill.GetComponent<Block>().AppearAgain();
         }
     }
