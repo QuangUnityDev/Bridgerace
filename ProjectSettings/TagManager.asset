@@ -6,6 +6,8 @@ TagManager:
   tags:
   - PlayerEnemy
   - CubeCheck
+  - Block
+  - BotPlayer
   layers:
   - Default
   - TransparentFX
