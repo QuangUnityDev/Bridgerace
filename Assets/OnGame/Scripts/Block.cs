@@ -11,12 +11,17 @@ public class Block : MonoBehaviour
     public bool isFloor2;
     public void OnInit()
     {
-        posStar = transform.position;
+        posStar = transform.localPosition;
         //Debug.LogError("Reset vi tri");
     }
     private void Start()
     {
+        isFloor2 = false;
         OnInit();
+    }
+    private void Update()
+    {
+       
     }
     public enum TypeBlock
     {
@@ -32,8 +37,13 @@ public class Block : MonoBehaviour
     }
     public void AppearAgain()
     {
-               
-        transform.position = posStar;      
+       
+        if (isFloor2)
+        {
+            transform.localPosition = new Vector3(posStar.x + 30,posStar.y,posStar.z);
+        } 
+        else
+        transform.localPosition = posStar;
         transform.rotation = Quaternion.Euler(0, 0, 0);
         GameManager.GetInstance().ReturnBlock(this.gameObject);
     }

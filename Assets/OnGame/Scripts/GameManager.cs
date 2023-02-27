@@ -6,6 +6,7 @@ using UnityEngine;
 public class GameManager : SingletonObject<GameManager>
 {
     public GameObject[] brick;
+    public bool isStartGame;
     public List<GameObject> blockRed, blockBlue, blockGreen, blockYellow;
     public Transform blockRedContain, blockBlueContain, blockGreenContain, blockYellowContain;
     public PlayerController playerController;
@@ -14,6 +15,7 @@ public class GameManager : SingletonObject<GameManager>
 
     private void Awake()
     {
+        isStartGame = false;
         SpawnBlockRandom();
     }
     public void PLayerGenBlockFollowColor()

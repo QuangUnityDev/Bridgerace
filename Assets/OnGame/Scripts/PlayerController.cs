@@ -8,6 +8,7 @@ public class PlayerController : Charecter
 
     public void FixedUpdate()
     {
+        if (!GameManager.GetInstance().isStartGame) return;
         blockOwner = containBlock.childCount;
         Vector3 direction = Vector3.forward * variableJoystick.Vertical + Vector3.right * variableJoystick.Horizontal;
         rb.velocity = direction * speed * Time.fixedDeltaTime;

@@ -18,7 +18,7 @@ public class BotPlayer : Charecter
         OnInit();
     }
     public void ChangState(IState newState)
-    {
+    {        
         //Debug.LogError(newState);
         if (currentState != null)
         {
@@ -32,6 +32,7 @@ public class BotPlayer : Charecter
     }
     void Update()
     {
+        if (!GameManager.GetInstance().isStartGame) return;
         blockOwner = containBlock.childCount;
         if (currentState != null)
         {
@@ -60,7 +61,7 @@ public class BotPlayer : Charecter
     }
     void OnInit()
     {
-        ChangState(new PatrolState());
+        ChangState(new IdleState());
     }
     private void OnTriggerEnter(Collider other)
     {

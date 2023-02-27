@@ -5,7 +5,7 @@ using UnityEngine;
 public class PatrolState : IState
 {
     public void OnEnter(BotPlayer botPlayer)
-    {
+    {      
         botPlayer.SetTarget();
         botPlayer.ChangeAnim("Run");
         botPlayer.navAgent.SetDestination(botPlayer.target.position);
@@ -18,7 +18,7 @@ public class PatrolState : IState
             botPlayer.ChangState(new FinishState());
             return;
         }
-        if(Vector3.Distance(botPlayer.transform.position,botPlayer.target.position) < 1.3f || botPlayer.target == null)
+        if (Vector3.Distance(botPlayer.transform.position, botPlayer.target.position) < 1.2f || botPlayer.target == null || botPlayer.target.transform.IsChildOf(botPlayer.containBlock))
         {
             botPlayer.SetTarget();
             botPlayer.ChangeAnim("Run");

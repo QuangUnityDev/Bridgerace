@@ -6,12 +6,17 @@ public class IdleState : IState
 {
     public void OnEnter(BotPlayer botPlayer)
     {
-        botPlayer.navAgent.SetDestination(botPlayer.lastPos.position);
+       
     }
 
     public void OnExcute(BotPlayer botPlayer)
     {
-      
+        
+        if (GameManager.GetInstance().isStartGame)
+        {
+            botPlayer.ChangState(new PatrolState());
+        }
+        else botPlayer.ChangState(new IdleState());
     }
 
     public void OnExit(BotPlayer botPlayer)

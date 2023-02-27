@@ -17,6 +17,7 @@ public class FinishState : IState
             Debug.LogError("BotWIn");
             botPlayer.ChangState(new IdleState());
             botPlayer.ChangeAnim("Dance");
+            ManagerUI.GetInstance().Lost();
         }
         else
         if (botPlayer.blockOwner <= 0)

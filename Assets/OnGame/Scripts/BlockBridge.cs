@@ -53,8 +53,7 @@ public class BlockBridge : MonoBehaviour
             GameObject buildFill = playerController.blockOfPlayer[child - 1].gameObject;
             playerController.blockOfPlayer.Remove(playerController.blockOfPlayer[child - 1]);
             GameManager.GetInstance().ReturnBlock(buildFill);
-            ChangeColor((int)collision.transform.GetComponent<PlayerController>().typePlayerColor);
-            
+            ChangeColor((int)collision.transform.GetComponent<PlayerController>().typePlayerColor); 
             buildFill.GetComponent<Block>().AppearAgain();
         }
         if (collision.gameObject.CompareTag("BotPlayer") && collision.transform.GetComponent<BotPlayer>().containBlock.childCount > 0 && (int)typeBlockColor != (int)collision.transform.GetComponent<BotPlayer>().typePlayerColor)
